@@ -1,4 +1,4 @@
-package fr.bastiansmn.testneo4j
+package fr.bastiansmn.testneo4j.controller
 
 import fr.bastiansmn.testneo4j.dto.ChildDto
 import fr.bastiansmn.testneo4j.dto.ParentDto
@@ -33,17 +33,9 @@ class DefaultController(
     ): ResponseEntity<List<ParentDto>> {
         return ResponseEntity
             .ok(
-                ParentMapper.relationnalToDtoList(parentService.getRelationnalParentEntity(filter))
-            )
-    }
-
-    @GetMapping("relational/child")
-    fun getRelationnalChildrenEntity(
-        @RequestParam("filter") filter: String
-    ): ResponseEntity<List<ChildDto>> {
-        return ResponseEntity
-            .ok(
-                ChildMapper.relationnalParentToDtoList(parentService.getRelationalChildrenOfParent(filter))
+                ParentMapper.relationnalToDtoList(
+                    parentService.getRelationnalParentEntity(filter)
+                )
             )
     }
 
@@ -53,7 +45,9 @@ class DefaultController(
     ): ResponseEntity<List<ParentDto>> {
         return ResponseEntity
             .ok(
-                ParentMapper.relationnalToDtoList(parentService.getRelationnalWithSpecParentEntity(filter))
+                ParentMapper.relationnalToDtoList(
+                    parentService.getRelationnalWithSpecParentEntity(filter)
+                )
             )
     }
 

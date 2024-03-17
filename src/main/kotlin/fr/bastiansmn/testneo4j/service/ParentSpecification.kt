@@ -10,7 +10,6 @@ class ParentSpecification {
 
     fun hasChildrenWithName(name: String): Specification<Parent> {
         return Specification { root, query, cb ->
-            query.distinct(true)
             val join = root.join<Parent, Child>("children")
             val condition = cb.like(
                 cb.upper(join.get("name")),

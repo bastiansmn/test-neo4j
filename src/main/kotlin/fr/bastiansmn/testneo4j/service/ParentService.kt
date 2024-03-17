@@ -1,7 +1,6 @@
 package fr.bastiansmn.testneo4j.service
 
 import fr.bastiansmn.testneo4j.dto.graph.ParentChildDto
-import fr.bastiansmn.testneo4j.model.relationnal.Child
 import fr.bastiansmn.testneo4j.model.relationnal.Parent
 import fr.bastiansmn.testneo4j.repository.ParentJPARepository
 import fr.bastiansmn.testneo4j.repository.ParentNeo4jRepository
@@ -21,11 +20,7 @@ class ParentService(
     }
 
     fun getRelationnalParentEntity(filter: String): List<Parent> {
-        return parentRelationalRepository.findParentsWithChildren(filter)
-    }
-
-    fun getRelationalChildrenOfParent(filter: String): List <Parent> {
-        return parentRelationalRepository.findParentsWithChildren(filter)
+        return parentRelationalRepository.findParentsWithChildrenWithoutJoinFetch(filter)
     }
 
     fun getRelationnalWithSpecParentEntity(filter: String): List<Parent> {

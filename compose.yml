@@ -10,7 +10,19 @@ services:
     environment:
       NEO4J_AUTH: neo4j/password
     volumes:
-      - data:/data
+      - neo4j-data:/data
+
+  psql-db:
+    image: postgres:15.6
+    ports:
+      - "5492:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+    volumes:
+      - psql-data:/var/lib/postgresql/data
 
 volumes:
-  data:
+  neo4j-data:
+  psql-data:
